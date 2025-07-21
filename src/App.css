@@ -1,42 +1,866 @@
-#root {
-  max-width: 1280px;
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Light theme variables */
+:root {
+  --bg-color: #f5f7fa;
+  --text-color: #2d3748;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --border-color: #e2e8f0;
+  --primary-color: #4299e1;
+  --secondary-color: #718096;
+  --accent-color: #667eea;
+  --navbar-bg: #2d3748;
+  --navbar-text-color: #ffffff;
+  --navbar-shadow: rgba(0, 0, 0, 0.2);
+  --footer-bg: #f7fafc;
+  --footer-text-color: #2d3748; 
+  --input-bg: #ffffff;
+  --input-border: #cbd5e0;
+  --button-bg: #4299e1;
+  --button-hover: #3182ce;
+  --settings-header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --card-gradient: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+  --text-color: #333;
+  --text-color-light: #666;
+  --input-bg: #ffffff;
+  --input-border: #e1e5e9;
+  --body-bg: #f5f7fa;
+  --section-bg: #ffffff;
+  --button-text: #ffffff;
+  --tech-bg: #ffffff;
+}
+
+/* Dark theme variables - Much Darker */
+[data-theme="dark"] {
+  --bg-color: #0f1419;
+  --text-color: #e2e8f0;
+  --card-bg: #161b22;
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --border-color: #2a3441;
+  --primary-color: #4299e1;
+  --secondary-color: #a0aec0;
+  --accent-color: #9f7aea;
+  --navbar-bg: #0f1419;
+  --navbar-text-color: #e2e8f0;
+  --navbar-shadow: rgba(0, 0, 0, 0.6);
+  --footer-bg: #1a1f2e;
+  --footer-text-color: #e2e8f0;
+  --input-bg: #2a3441;
+  --input-border: #4a5568;
+  --button-bg: #4299e1;
+  --button-hover: #3182ce;
+  --settings-header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --footer-color: #1a1f2e;
+  --body-bg: #0d1117;
+  --section-bg: #161b22;
+  --card-gradient: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  --text-color: #f5f5f5;
+  --text-color-light: #cccccc;
+  --input-bg: #0d1117;
+  --input-border: #30363d;
+  --body-bg: #0d1117;
+  --section-bg: #161b22;
+  --button-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --button-text: #ffffff;
+  --tech-bg: #0d1117;
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .about-content,
+[data-theme="dark"] .contact-form {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode styles for MUI TextField */
+[data-theme='dark'] .MuiOutlinedInput-root fieldset {
+  border-color: #4a5568;
+}
+
+[data-theme='dark'] .MuiOutlinedInput-root:hover fieldset {
+  border-color: #a0aec0;
+}
+
+[data-theme='dark'] .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #4299e1;
+}
+
+[data-theme='dark'] .MuiOutlinedInput-input {
+  color: #e2e8f0;
+}
+
+[data-theme='dark'] .MuiInputLabel-root {
+  color: #a0aec0;
+}
+
+[data-theme='dark'] .MuiInputLabel-root.Mui-focused {
+  color: #4299e1;
+}
+
+/* Apply theme to body */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* App container */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+
+/* Weather App specific styles */
+.weather-app {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+/* Cards and containers */
+.card,
+.weather-card,
+.info-box,
+.settings-card,
+.about-content,
+.contact-form {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 6px var(--card-shadow);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.card:hover,
+.weather-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--card-shadow);
+}
+
+/* Navigation styles - Dark Theme Override */
+.navbar {
+  background-color: #2d3748 !important;
+  color: #ffffff !important;
+  min-height: 60px !important;
+  padding: 1rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Force all navbar elements to be white */
+.navbar *,
+.navbar a,
+.navbar .nav-link,
+.navbar .navbar-brand,
+.navbar .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+/* Hover effects */
+.navbar a:hover,
+.navbar .nav-link:hover {
+  color: #4299e1 !important;
+}
+
+/* If using Bootstrap navbar */
+.navbar-light .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+.navbar-light .navbar-brand {
+  color: #ffffff !important;
+}
+/* Footer styles */
+.footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text-color);
+  padding: 2rem;
   text-align: center;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.footer p {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
 }
 
-@keyframes logo-spin {
+.footer-bottom-content {
+  background-color: var(--footer-color);
+}
+
+.footer a {
+  color: var(--footer-text-color);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .footer-section h4 {
+  color: #e2e8f0; 
+}
+
+/* Form elements */
+input,
+select,
+textarea {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+}
+
+/* Search input specific style */
+.search-input {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+}
+
+/* Buttons */
+button,
+.btn {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-1px);
+}
+
+/* Settings specific styles */
+.settings-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.settings-header {
+  background: var(--settings-header-bg);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.settings-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.settings-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.settings-section {
+  background-color: var(--card-bg);
+  border-radius: 0 0 12px 12px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-top: none;
+}
+
+.setting-group {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.setting-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.setting-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.setting-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.setting-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.setting-label {
+  flex: 1;
+}
+
+.setting-label h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+}
+
+.setting-label p {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}
+
+.setting-control {
+  min-width: 200px;
+}
+
+/* Theme toggle buttons */
+.theme-toggle {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.theme-option {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.theme-option.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.theme-option:hover:not(.active) {
+  background-color: var(--border-color);
+}
+
+/* Contact and About pages */
+.contact-container,
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.contact-form,
+.about-content {
+  width: 100%;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px var(--card-shadow);
+  border: 1px solid var(--border-color);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+}
+
+/* Page titles */
+.page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.page-title h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: var(--settings-header-bg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+
+  .weather-app {
+    padding: 1rem;
+  }
+
+  .settings-header h1 {
+    font-size: 2rem;
+  }
+
+  .page-title h1 {
+    font-size: 2rem;
+  }
+
+  .setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .setting-control {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* PAGE LOADING ANIMATIONS - Add this to your App.css */
+
+/* Keyframe animations */
+@keyframes fadeInUp {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.card {
-  padding: 2em;
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* HOME PAGE ANIMATIONS */
+.weather-app {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.weather-card {
+  animation: slideInScale 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.weather-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.weather-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.weather-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.weather-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Search box animation */
+.search-input {
+  animation: fadeInDown 0.6s ease-out;
+}
+
+/* Button animations */
+/*button,
+.btn {
+  animation: scaleIn 0.5s ease-out;
+}*/
+
+/* SETTINGS PAGE ANIMATIONS */
+/*.settings-container {
+  animation: fadeInUp 0.7s ease-out;
+}
+
+.settings-header {
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.settings-section {
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.setting-group {
+  animation: fadeInLeft 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.setting-group:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.setting-group:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.setting-group:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.setting-group:nth-child(4) {
+  animation-delay: 0.6s;
+}*/
+
+/* GENERAL CARD ANIMATIONS */
+.card,
+.info-box {
+  animation: slideInScale 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+/* NAVBAR ANIMATION */
+.navbar {
+  animation: fadeInDown 0.5s ease-out;
+}
+
+/* FOOTER ANIMATION */
+.footer {
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.8s;
+  animation-fill-mode: both;
+}
+
+/* CONTACT/ABOUT PAGE ANIMATIONS */
+.contact-container,
+.about-container {
+  animation: fadeInUp 0.7s ease-out;
+}
+
+.contact-form,
+.about-content {
+  animation: scaleIn 0.8s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+/* PAGE TITLE ANIMATIONS 
+.page-title {
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.page-title h1 {
+  animation: scaleIn 0.6s ease-out;
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+} */
+
+/* FORM ANIMATIONS 
+.form-group {
+  animation: fadeInRight 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.form-group:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.form-group:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.form-group:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.form-group:nth-child(4) {
+  animation-delay: 0.4s;
+} */
+
+/* HOVER ANIMATIONS - Enhanced 
+.card:hover,
+.weather-card:hover,
+.settings-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  transition: all 0.3s ease;
+}
+
+.btn:hover,
+button:hover {
+  transform: translateY(-2px) scale(1.05);
+  transition: all 0.3s ease;
+} */
+
+
+/* RESPONSIVE ANIMATIONS */
+@media (max-width: 768px) {
+  .weather-app,
+  .settings-container,
+  .contact-container,
+  .about-container {
+    animation-duration: 0.5s;
+  }
+  
+  .setting-group,
+  .form-group {
+    animation-delay: 0.1s;
+  }
+}
+
+/* DARK THEME FIX FOR ABOUT AND CONTACT PAGES - Add this to App.css */
+
+/* About Page Dark Theme */
+[data-theme="dark"] .about-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .about-content {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .about-content h1,
+[data-theme="dark"] .about-content h2,
+[data-theme="dark"] .about-content h3 {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .about-content p {
+  color: var(--text-color) !important;
+}
+
+/* Contact Page Dark Theme */
+[data-theme="dark"] .contact-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .contact-form {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .contact-form h1,
+[data-theme="dark"] .contact-form h2,
+[data-theme="dark"] .contact-form h3 {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .contact-form p {
+  color: var(--text-color) !important;
+}
+
+/* Contact Form Fields Dark Theme */
+[data-theme="dark"] .contact-form input,
+[data-theme="dark"] .contact-form textarea,
+[data-theme="dark"] .contact-form select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--input-border) !important;
+}
+
+[data-theme="dark"] .contact-form input::placeholder,
+[data-theme="dark"] .contact-form textarea::placeholder {
+  color: var(--secondary-color) !important;
+}
+
+[data-theme="dark"] .contact-form label {
+  color: var(--text-color) !important;
+}
+
+/* Contact Information Card Dark Theme */
+[data-theme="dark"] .contact-info,
+[data-theme="dark"] .contact-details {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+}
+
+/* Feature Cards Dark Theme (if any) */
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .info-card,
+[data-theme="dark"] .tech-card {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .feature-card h3,
+[data-theme="dark"] .info-card h3,
+[data-theme="dark"] .tech-card h3 {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .feature-card p,
+[data-theme="dark"] .info-card p,
+[data-theme="dark"] .tech-card p {
+  color: var(--secondary-color) !important;
+}
+
+/* Icons in dark theme */
+[data-theme="dark"] .contact-form .icon,
+[data-theme="dark"] .about-content .icon {
+  color: var(--primary-color) !important;
+}
+
+/* Any buttons in contact/about pages */
+[data-theme="dark"] .contact-form button,
+[data-theme="dark"] .about-content button {
+  background-color: var(--button-bg) !important;
+  color: white !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .contact-form button:hover,
+[data-theme="dark"] .about-content button:hover {
+  background-color: var(--button-hover) !important;
+}
+
+/* Social links and other links */
+[data-theme="dark"] .contact-form a,
+[data-theme="dark"] .about-content a {
+  color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .contact-form a:hover,
+[data-theme="dark"] .about-content a:hover {
+  color: var(--accent-color) !important;
+}
+
+/* Form sections */
+[data-theme="dark"] .form-section {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Contact grid items */
+[data-theme="dark"] .contact-grid-item {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color);
+}
+
+/* General fixes for any missed elements */
+[data-theme="dark"] .about-container *,
+[data-theme="dark"] .contact-container * {
+  color: inherit;
+}
+
+[data-theme="dark"] .about-content *:not(button):not(a),
+[data-theme="dark"] .contact-form *:not(button):not(a) {
+  color: var(--text-color) !important;
+}
+
+/* Specific overrides for stubborn elements */
+[data-theme="dark"] .about-content div,
+[data-theme="dark"] .contact-form div {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .about-content span,
+[data-theme="dark"] .contact-form span {
+  color: var(--text-color) !important;
+}
+
+

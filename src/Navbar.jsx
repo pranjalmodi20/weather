@@ -1,10 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+const Navbar = () =>{
+    return (
+        <nav className='navbar'>
+            <div className='logo'>Weather App</div>
+            <ul className='nav-links'>
+                <li><Link to="/">HOME</Link></li>
+                <li><Link to="/settings">SETTINGS</Link></li>
+                <li><Link to="/about">ABOUT</Link></li>
+                <li><Link to="/contact">CONTACT</Link></li>
+            </ul>
+        </nav>
+    );
+};
+
+export default Navbar;

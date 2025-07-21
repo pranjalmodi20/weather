@@ -1,41 +1,73 @@
+import React from 'react';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./InfoBox.css";
 
-export default function InfoBox() {
-  const Initial_Url =
-    "https://images.unsplash.com/photo-1628525805814-cf9fe2582727?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGR1c3R5JTIwd2VhdGhlcnxlbnwwfHwwfHx8MA%3D%3D";
-  let info = {
-    city: "Delhi",
-    feelslike: 24.84,
-    temp: 25.05,
-    tempMin: 25.05,
-    tempMax: 25.05,
-    humidity: 47,
-    weather: "haze",
-  };
+export default function InfoBox({ info }) {
+  const HOT_URL = "https://images.unsplash.com/photo-1504370805625-d32c54b16100?q=80&w=1632&auto=format&fit=crop";
+  const COLD_URL = "https://images.unsplash.com/photo-1612208695882-02f2322b7fee?w=500&auto=format&fit=crop";
+  const RAIN_URL = "https://images.unsplash.com/photo-1599806112354-67f8b5425a06?w=500&auto=format&fit=crop";
+
+  const backgroundImage =
+    info.humidity > 80 ? RAIN_URL :
+    info.temp > 15 ? HOT_URL :
+    COLD_URL;
+
   return (
     <div className="InfoBox">
-      <h1>WeatherInfo - {info.weather}</h1>
+      <h1 className="weather-title">Weather Info - {info.weather}</h1>
       <div className="cardcontainer">
-        <Card sx={{ maxWidth: 345 }}>
+        <Card className="weather-info-card">
           <CardMedia
-            sx={{ height: 140 }}
-            image={Initial_Url}
+            component="img"
+            height="200"
+            image={backgroundImage}
+            alt="Weather Image"
+            className="weather-image"
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+          <CardContent className="weather-content">
+            <Typography 
+              gutterBottom 
+              variant="h5" 
+              component="div"
+              className="location-name"
+            >
               {info.city}
             </Typography>
-            <Typography variant="body2" color="text.secondary" component={"span"}>
-              <p>Temperature = {info.temp}&deg;C</p>
-              <p>Humidity = {info.humidity}&deg;C</p>
-              <p>Min Temperature = {info.tempMin}&deg;C</p>
-              <p>Max Temperature = {info.tempMax}&deg;C</p>
-              <p>The weather can be described as <i>{info.weather}</i> and feels like {info.feelslike}&deg;C</p>
-            </Typography>
+            
+            <div className="weather-details">
+              <div className="weather-item temperature">
+                <span className="weather-label">Temperature:</span>
+                <span className="weather-value">{info.temp}°C</span>
+              </div>
+              
+              <div className="weather-item">
+                <span className="weather-label">Humidity:</span>
+                <span className="weather-value">{info.humidity}%</span>
+              </div>
+              
+              <div className="weather-item">
+                <span className="weather-label">Min Temperature:</span>
+                <span className="weather-value">{info.tempMin}°C</span>
+              </div>
+              
+              <div className="weather-item">
+                <span className="weather-label">Max Temperature:</span>
+                <span className="weather-value">{info.tempMax}°C</span>
+              </div>
+              
+              <div className="weather-item">
+                <span className="weather-label">Feels Like:</span>
+                <span className="weather-value">{info.feelslike}°C</span>
+              </div>
+              
+              <div className="weather-item description">
+                <span className="weather-label">Description:</span>
+                <span className="weather-value">{info.weather}</span>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
