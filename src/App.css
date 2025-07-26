@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* Reset and base styles */
 * {
   margin: 0;
@@ -105,14 +107,18 @@
 
 /* Apply theme to body */
 body {
-  background-color: var(--bg-color);
+  background: linear-gradient(120deg, #e0e7ff 0%, #f5f7fa 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
   color: var(--text-color);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
 }
 
 /* App container */
@@ -139,20 +145,21 @@ body {
 .settings-card,
 .about-content,
 .contact-form {
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1rem 0;
-  box-shadow: 0 4px 6px var(--card-shadow);
-  border: 1px solid var(--border-color);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(8px) saturate(120%);
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  border: 1px solid rgba(255,255,255,0.18);
   color: var(--text-color);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(.4,2,.6,1);
 }
 
 .card:hover,
 .weather-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--card-shadow);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.22);
 }
 
 /* Navigation styles - Dark Theme Override */
@@ -224,22 +231,21 @@ body {
 input,
 select,
 textarea {
-  background-color: var(--input-bg);
-  color: var(--text-color);
-  border: 1px solid var(--input-border);
-  border-radius: 8px;
-  padding: 0.75rem;
-  font-size: 1rem;
-  width: 100%;
-  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  padding: 0.85rem;
+  border: 1.5px solid var(--input-border);
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 1px 4px rgba(66,153,225,0.04);
+  transition: border-color 0.2s cubic-bezier(.4,2,.6,1);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.18);
 }
 
 /* Search input specific style */
@@ -252,21 +258,23 @@ textarea:focus {
 /* Buttons */
 button,
 .btn {
-  background-color: var(--button-bg);
-  color: white;
+  background: linear-gradient(90deg, var(--primary-color) 60%, var(--accent-color) 100%);
+  color: var(--button-text);
   border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 10px;
+  padding: 0.85rem 2rem;
+  font-size: 1.08rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(66,153,225,0.08);
+  transition: all 0.2s cubic-bezier(.4,2,.6,1);
 }
 
 button:hover,
 .btn:hover {
-  background-color: var(--button-hover);
-  transform: translateY(-1px);
+  background: linear-gradient(90deg, var(--button-hover) 60%, var(--accent-color) 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(66,153,225,0.18);
 }
 
 /* Settings specific styles */
@@ -442,7 +450,8 @@ button:hover,
 /* Responsive design */
 @media (max-width: 768px) {
   .main-content {
-    padding: 1rem;
+    padding: 1rem 0;
+    min-height: 60vh;
   }
 
   .weather-app {
@@ -861,6 +870,26 @@ button:hover {
 [data-theme="dark"] .about-content span,
 [data-theme="dark"] .contact-form span {
   color: var(--text-color) !important;
+}
+
+.background-blur-shape {
+  position: absolute;
+  z-index: 0;
+  filter: blur(60px) saturate(120%);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  position: relative;
+  z-index: 1;
+  padding: 2rem 0;
 }
 
 

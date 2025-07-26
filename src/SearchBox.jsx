@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './SearchBox.css';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBox({ setInfo }) {
   const [city, setCity] = useState("");
@@ -24,7 +25,7 @@ export default function SearchBox({ setInfo }) {
           feelslike: jsonResponse.main.feels_like,
           weather: jsonResponse.weather[0].description,
         };
-        setInfo(result); // Send weather info to parent component
+        setInfo(result); 
       } else {
         alert("City not found!");
         setInfo(null);
@@ -51,6 +52,7 @@ export default function SearchBox({ setInfo }) {
   return (
     <div className='searchbox'>
       <form onSubmit={handleSubmit}>
+        <span className="search-icon"><SearchIcon /></span>
         <TextField
           id="city"
           label="Search City"
@@ -58,8 +60,15 @@ export default function SearchBox({ setInfo }) {
           value={city}
           onChange={handleChange}
           required
+          InputProps={{
+            style: {
+              borderRadius: '2rem',
+              background: 'rgba(255,255,255,0.85)',
+              boxShadow: '0 2px 8px rgba(66,153,225,0.08)',
+              fontFamily: 'Inter, sans-serif',
+            },
+          }}
         />
-        <br /><br />
         <Button variant="contained" type="submit">
           Search
         </Button>
