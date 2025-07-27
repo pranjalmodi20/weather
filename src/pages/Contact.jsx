@@ -66,10 +66,10 @@ export default function Contact() {
             <div className="social-links">
               <h4>Follow Us</h4>
               <div className="social-icons">
-                <a href="#" className="social-icon">📘</a>
-                <a href="#" className="social-icon">🐦</a>
-                <a href="#" className="social-icon">💼</a>
-                <a href="#" className="social-icon">📷</a>
+                <a href="#" className="social-icon"><i className="fa-brands fa-facebook-f"></i></a>
+                <a href="#" className="social-icon"><i className="fa-brands fa-twitter"></i></a>
+                <a href="#" className="social-icon"><i className="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" className="social-icon"><i className="fa-brands fa-instagram"></i></a>
               </div>
             </div>
           </div>

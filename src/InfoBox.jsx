@@ -5,7 +5,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "./InfoBox.css";
 
-export default function InfoBox({ info }) {
+function getUnitSymbol(unit) {
+  if (unit === "celsius") return "°C";
+  if (unit === "fahrenheit") return "°F";
+  if (unit === "kelvin") return "K";
+  return "";
+}
+
+export default function InfoBox({ info, unit = "celsius" }) {
   const HOT_URL = "https://images.unsplash.com/photo-1504370805625-d32c54b16100?q=80&w=1632&auto=format&fit=crop";
   const COLD_URL = "https://images.unsplash.com/photo-1612208695882-02f2322b7fee?w=500&auto=format&fit=crop";
   const RAIN_URL = "https://images.unsplash.com/photo-1599806112354-67f8b5425a06?w=500&auto=format&fit=crop";
@@ -14,6 +21,8 @@ export default function InfoBox({ info }) {
     info.humidity > 80 ? RAIN_URL :
     info.temp > 15 ? HOT_URL :
     COLD_URL;
+
+  const unitSymbol = getUnitSymbol(unit);
 
   return (
     <div className="InfoBox">
@@ -40,7 +49,7 @@ export default function InfoBox({ info }) {
             <div className="weather-details">
               <div className="weather-item temperature">
                 <span className="weather-label">Temperature:</span>
-                <span className="weather-value">{info.temp}°C</span>
+                <span className="weather-value">{info.temp}{unitSymbol}</span>
               </div>
               
               <div className="weather-item">
@@ -50,17 +59,17 @@ export default function InfoBox({ info }) {
               
               <div className="weather-item">
                 <span className="weather-label">Min Temperature:</span>
-                <span className="weather-value">{info.tempMin}°C</span>
+                <span className="weather-value">{info.tempMin}{unitSymbol}</span>
               </div>
               
               <div className="weather-item">
                 <span className="weather-label">Max Temperature:</span>
-                <span className="weather-value">{info.tempMax}°C</span>
+                <span className="weather-value">{info.tempMax}{unitSymbol}</span>
               </div>
               
               <div className="weather-item">
                 <span className="weather-label">Feels Like:</span>
-                <span className="weather-value">{info.feelslike}°C</span>
+                <span className="weather-value">{info.feelslike}{unitSymbol}</span>
               </div>
               
               <div className="weather-item description">

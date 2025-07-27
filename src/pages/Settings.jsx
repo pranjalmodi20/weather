@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSettings } from '../SettingsContext';
 
+
 const Settings = () => {
   const { settings, updateSetting, resetSettings } = useSettings();
 
@@ -18,10 +19,6 @@ const Settings = () => {
 
   const handleLocationChange = (location) => {
     updateSetting('location', location);
-  };
-
-  const handleNotificationsChange = (notifications) => {
-    updateSetting('notifications', notifications);
   };
 
   return (
@@ -131,32 +128,7 @@ const Settings = () => {
             </div>
           </div>
         </div>
-
-        {/* Notifications Section */}
-        <div className="setting-group">
-          <div className="setting-header">
-            <span className="setting-icon">🔔</span>
-            <span className="setting-title">Notifications</span>
-          </div>
-          
-          <div className="setting-item">
-            <div className="setting-label">
-              <h4>Weather Alerts</h4>
-              <p>Receive notifications for weather updates</p>
-            </div>
-            <div className="setting-control">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={settings.notifications}
-                  onChange={(e) => handleNotificationsChange(e.target.checked)}
-                />
-                <span className="slider"></span>
-              </label>
-            </div>
-          </div>
-        </div>
-
+        
         {/* Reset Section */}
         <div className="setting-group">
           <div className="setting-item">
