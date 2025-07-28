@@ -3,8 +3,6 @@
   justify-content: center;
   align-items: center;
   margin: 2rem 0 2.5rem 0;
-  z-index: 2;
-  
 }
 
 .searchbox form,
@@ -28,7 +26,7 @@
   font-size: 1.5rem;
   color: #667eea;
   margin-right: 0.5rem;
-   margin-left: 0.1rem;
+  margin-left: 0.1rem;
   display: flex;
   align-items: center;
 }
@@ -40,26 +38,26 @@
 }
 
 .MuiButton-root {
-  border-radius: 2rem !important;
-  font-weight: 600 !important;
-  font-size: 1.08rem !important;
-  padding: 0.7rem 1.5rem !important;
-  background: linear-gradient(90deg, #667eea 60%, #4299e1 100%) !important;
-  color: #fff !important;
-  box-shadow: 0 2px 8px rgba(66,153,225,0.08) !important;
-  transition: background 0.2s cubic-bezier(.4,2,.6,1), transform 0.2s cubic-bezier(.4,2,.6,1) !important;
+  border-radius: 2rem;
+  font-weight: 600 ;
+  font-size: 1.08rem ;
+  padding: 0.7rem 1.5rem ;
+  background: linear-gradient(90deg, #667eea 60%, #4299e1 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(66,153,225,0.08);
+  transition: background 0.2s cubic-bezier(.4,2,.6,1), transform 0.2s;
 }
 
 .MuiButton-root:hover {
-  background: linear-gradient(90deg, #4299e1 60%, #667eea 100%) !important;
-  transform: translateY(-2px) scale(1.03) !important;
+  background: linear-gradient(90deg, #4299e1 60%, #667eea 100%);
+  transform: translateY(-2px) scale(1.03);
 }
 
 .search-btn, .detect-btn {
   min-width: 110px;
   white-space: nowrap;
-  font-size: 1rem !important;
-  padding: 0.7rem 1.2rem !important;
+  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
 }
 
 .search-icon {
@@ -88,15 +86,15 @@
 }
 
 [data-theme="dark"] .MuiTextField-root input {
-  background: #23272f !important;
-  color: #e2e8f0 !important;
-  border-color: #334155 !important;
+  background: #23272f;
+  color: #e2e8f0;
+  border-color: #334155;
 }
 
 [data-theme="dark"] .MuiOutlinedInput-notchedOutline {
-  border-color: #334155 !important;
+  border-color: #334155;
 }
 
 [data-theme="dark"] .MuiInputLabel-root {
-  color: #a0aec0 !important;
+  color: #a0aec0;
 }

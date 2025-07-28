@@ -157,11 +157,11 @@ body {
 
 /* Navigation styles - Dark Theme Override */
 .navbar {
-  background-color: #2d3748 !important;
-  color: #ffffff !important;
-  min-height: 60px !important;
-  padding: 1rem !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  background-color: #2d3748;
+  color: #ffffff;
+  min-height: 60px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Force all navbar elements to be white */
@@ -170,22 +170,22 @@ body {
 .navbar .nav-link,
 .navbar .navbar-brand,
 .navbar .navbar-nav .nav-link {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 /* Hover effects */
 .navbar a:hover,
 .navbar .nav-link:hover {
-  color: #4299e1 !important;
+  color: #4299e1;
 }
 
 /* If using Bootstrap navbar */
 .navbar-light .navbar-nav .nav-link {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 .navbar-light .navbar-brand {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 /* Footer styles */
 .footer {
